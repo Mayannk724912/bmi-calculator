@@ -1,9 +1,15 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import './App.css'
 
 const App = () => {
   const [height, setHeight] = useState(70);
   const [weight, setWeight] = useState(180);
+
+  const output = useMemo(()=>{
+    const calculateHeight = height /100;
+
+    return(weight/(calculateHeight*calculateHeight)).toFixed (1)
+  },[weight,height])
 
   return (
     <>
@@ -19,7 +25,7 @@ const App = () => {
         </div>
         <div className='output-section'>
           <p> Your BMI is:</p>
-          <p className='Output'>100</p>
+          <p className='Output'>{output}</p>
         </div>
 
       </main>
